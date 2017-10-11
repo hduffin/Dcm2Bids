@@ -49,7 +49,7 @@
             "suffix": "bold",
             "criteria": {
                 "equal": {"SeriesDescription": "rs_fMRI"}
-            }
+            },
             "customHeader": {
                 "TaskName": "rest"
             }
