@@ -4,10 +4,12 @@ Dcm2Bids helps you to convert DICOM files of a study to [Brain Imaging Data Stru
 
 Learn more about BIDS and read the [specifications][bids-spec].
 
+Dcm2Bids was originally developed by Christophe Bedetti. This fork has several additional features and is maintained by Johan Carlin.
+
 ## Install
 
 ```
-git clone https://github.com/cbedetti/Dcm2Bids
+git clone https://github.com/jooh/Dcm2Bids
 ```
 
 Add the installation directory to your PYTHONPATH and the `scripts` directory to your PATH.
