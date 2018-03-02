@@ -14,6 +14,13 @@ git clone https://github.com/jooh/Dcm2Bids
 
 Add the installation directory to your PYTHONPATH and the `scripts` directory to your PATH.
 
+Another way is to go into the cloned directory and run the pip installer:
+
+```
+cd Dcm2Bids
+pip install .
+```
+
 #### Software dependencies
 
 - dcm2niix

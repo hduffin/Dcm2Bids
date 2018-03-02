@@ -6,6 +6,7 @@ import os
 import shutil
 import csv
 from collections import OrderedDict
+import sys
 
 def load_json(filename):
     with open(filename, 'r') as f:
@@ -35,7 +36,11 @@ def read_participants(filename):
         return []
     with open(filename, 'r') as f:
         reader = csv.reader(f, delimiter='\t')
-        header = reader.next();
+        # Check for python version and use the right syntax.
+        if sys.version_info[0] < 3:
+            header = reader.next()
+        else:
+            header = next(reader)
         return [OrderedDict(zip(header,row)) for row in reader]
 
 def make_directory_tree(directory):
