@@ -18,7 +18,7 @@ DISTNAME = "dcm2bids"
 DESCRIPTION = description
 VERSION = "0.4.0"
 AUTHOR = "Johan Carlin"
-AUTHOR_EMAIL = "christophe.bedetti@umontreal.ca"
+AUTHOR_EMAIL = ""
 URL = "https://github.com/jooh/Dcm2Bids"
 DOWNLOAD_URL = URL + "/archive/" + VERSION + ".tar.gz"
 
