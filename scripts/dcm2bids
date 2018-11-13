@@ -5,13 +5,18 @@
 import argparse
 import sys
 from dcm2bids.dcm2bids import Dcm2bids
+import dcm2bids
 
 
 def get_arguments():
     parser = argparse.ArgumentParser(
             formatter_class=argparse.RawDescriptionHelpFormatter,
-            description="",
+            description="""
+            dicom to BIDS conversion, version {version}. Fork of the original Dcm2Bids
+            project (v0.4.0, commit f63b22901408a7e848b6dbf2af542118729cb8b1 from
+            https://github.com/cbedetti/Dcm2Bids).""".format(version=dcm2bids.__version__),
             epilog="""
+            This fork is maintained by Johan Carlin.
             Documentation at https://github.com/jooh/Dcm2Bids
             """)
 

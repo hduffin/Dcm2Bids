@@ -1,0 +1,85 @@
+{
+    "descriptions": [
+        {
+            "dataType": "anat",
+            "suffix": "T1w",
+            "criteria": {
+                "in": {
+                    "SeriesDescription": "anat_T1w_acq-MPRAGE_run"
+                }
+            }
+        },
+        {
+            "dataType": "func",
+            "suffix": "bold",
+            "criteria": {
+                "in": {
+                    "PulseSequenceDetails": "bold"
+                }
+            },
+            "customHeader": {
+                "TaskName": "rest"
+            }
+        },
+        {
+            "dataType": "fmap",
+            "suffix": "magnitude1",
+            "criteria": {
+                "in": {
+                    "PulseSequenceDetails": "field_mapping"
+                },
+                "equal": {
+                    "ImageType": [
+                        "ORIGINAL",
+                        "PRIMARY",
+                        "M",
+                        "ND",
+                        "NORM"
+                    ],
+                    "EchoTime": 0.00492
+                }
+            }
+        },
+        {
+            "dataType": "fmap",
+            "suffix": "magnitude2",
+            "criteria": {
+                "in": {
+                    "PulseSequenceDetails": "field_mapping"
+                },
+                "equal": {
+                    "ImageType": [
+                        "ORIGINAL",
+                        "PRIMARY",
+                        "M",
+                        "ND",
+                        "NORM"
+                    ],
+                    "EchoNumber": 2,
+                    "EchoTime": 0.00738
+                }
+            }
+        },
+        {
+            "dataType": "fmap",
+            "suffix": "phasediff",
+            "criteria": {
+                "in": {
+                    "PulseSequenceDetails": "field_mapping"
+                },
+                "equal": {
+                    "ImageType": [
+                        "ORIGINAL",
+                        "PRIMARY",
+                        "P",
+                        "ND"
+                    ]
+                }
+            },
+            "customHeader": {
+                "EchoTime1": 0.00492,
+                "EchoTime2": 0.00738
+            }
+        }
+    ]
+}

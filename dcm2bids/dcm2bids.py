@@ -30,13 +30,10 @@ class Dcm2bids(object):
         self.anonymizer = anonymizer
         if not os.path.exists(self.outputdir):
             os.makedirs(self.outputdir)
-        derivdir = os.path.join(outputdir, "derivatives")
-        if not os.path.exists(derivdir):
-            os.makedirs(derivdir)
+        self.derivdir = os.path.join(outputdir, "derivatives")
         logging.basicConfig(format='%(asctime)s %(message)s',
                             datefmt='%Y/%m/%d %H:%M', filemode='a',
-                            filename=os.path.join(
-                                os.path.split(self.outputdir)[0],'dcm2bids.log'))
+                            filename=os.path.join(self.outputdir,'dcm2bids.log'))
         self.logger = logging.getLogger("dcm2bids")
         self.logger.setLevel(loglevel.upper())
         self.logger.info("--- dcm2bids start ---")
@@ -111,6 +108,8 @@ class Dcm2bids(object):
 
 
     def _updatestudyfiles(self):
+        if not os.path.exists(self.derivdir):
+            os.makedirs(self.derivdir)
         # participant table
         partfile = os.path.join(self.outputdir,"participants.tsv")
         participants = read_participants(partfile)
@@ -124,7 +123,7 @@ class Dcm2bids(object):
         # dataset description
         descfile = os.path.join(self.outputdir,'dataset_description.json')
         if not os.path.exists(descfile):
-            save_json({"Name": "", "BIDSVersion": "1.0.1",
+            save_json({"Name": "", "BIDSVersion": "1.1.0",
                         "License": "", "Authors": [""],
                         "Acknowledgments": "",
                         "HowToAcknowledge": "",
@@ -144,3 +143,7 @@ class Dcm2bids(object):
                        "0.01 " + datetime.date.today().strftime("%Y-%m-%d"),
                        "",
                        " - Initialised study directory"])
+        # ignore file for bids-validator
+        ignorefile = os.path.join(self.outputdir, '.bidsignore')
+        if not os.path.exists(ignorefile):
+            write_txt(ignorefile, ['tmp_dcm2bids/*', 'dcm2bids.log'])

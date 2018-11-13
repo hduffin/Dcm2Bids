@@ -31,7 +31,7 @@ class Sidecarparser(object):
             self.sidecars[sidecar]["header"] = load_json(sidecar)
             self._sidecar = self.sidecars[sidecar]
             if self._respect(self.descriptions[index]["criteria"]):
-                self.logger.debug("Description %d matches sidecar %s\n",sidecar)
+                self.logger.debug("Description %d matches sidecar %s\n", index, sidecar)
                 graph[sidecar].append(index)
                 if "customHeader" in self.descriptions[index]:
                     self.sidecars[sidecar]["header"].update(
@@ -82,9 +82,9 @@ class Sidecarparser(object):
                         base, self.descriptions[match_descs[0]])
                 rsl.append(acq)
             elif len(match_descs) == 0:
-                print("'{}' satisfies no description".format(basename))
+                print("'{}' satisfies no description - skipping".format(basename))
             else:
-                print("'{}' satisfies several descriptions".format(basename))
+                print("'{}' satisfies several descriptions - skipping".format(basename))
         return rsl
 
 
