@@ -1,8 +1,6 @@
 # Dcm2Bids
 
-Dcm2Bids helps you to convert DICOM files of a study to [Brain Imaging Data Structure][bids] (BIDS).
-
-Learn more about BIDS and read the [specifications][bids-spec].
+Dcm2Bids helps you to convert DICOM files of a study to Brain Imaging Data Structure (BIDS).
 
 Dcm2Bids was originally developed by Christophe Bedetti. This fork has several
 additional features and is maintained by Johan Carlin. (Yes, we should merge. Pull
@@ -33,11 +31,11 @@ print(dcm2bids.__version__)
 
 #### Software dependencies
 
-- dcm2niix
-- nibabel is optional, but useful if you need to override incorrect nifti header information (currently only incorrect RepetitionTime settings)
-- pydeface is useful as a plugin to anonymise anatomicals (see -a input flag)
+- Required: Python 2.7+ - python 3.6 recommended
+- Required: [dcm2niix](https://github.com/rordenlab/dcm2niix) - DICOM to NIfTI conversion and initial sidecar.json creation
+- Optional: [nibabel](https://github.com/nipy/nibabel) - useful if you need to override incorrect nifti header information (currently only incorrect RepetitionTime settings)
+- Optional: [pydeface](https://github.com/poldracklab/pydeface) - useful as a plugin to anonymise anatomicals (see -a input flag)
 
-DICOM to NIfTI conversion and initial sidecar.json creation is done with `dcm2niix` converter. See their [github][dcm2niix-github] for source or [NITRC][dcm2niix-nitrc] for compiled versions.
 
 ## Quick start
 
@@ -122,5 +120,7 @@ It can take a bit of trial and error to get dcm2bids to recognise your sequences
 
 ## References
 [Dcm2Bids original version by Christophe Bedetti](https://github.com/cbedetti/Dcm2Bids)
-[bids]: http://bids.neuroimaging.io/
-[dcm2niix]: https://github.com/rordenlab/dcm2niix
+
+[bids](http://bids.neuroimaging.io/)
+
+[dcm2niix](https://github.com/rordenlab/dcm2niix)
