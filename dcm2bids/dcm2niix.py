@@ -52,7 +52,8 @@ class Dcm2niix(object):
 
 
     def execute(self):
-        for directory in self.dicomDir:
-            commandStr = "dcm2niix {} -o {} {}"
-            command = commandStr.format(self.options, self.outputDir, directory)
-            call(command, shell=True)
+        with open(os.path.join(self.outputDir, "dcm2niix.log"), "a") as file_handle:
+            for directory in self.dicomDir:
+                commandStr = "dcm2niix {} -o {} {}"
+                command = commandStr.format(self.options, self.outputDir, directory)
+                call(command, shell=True, stdout=file_handle)
