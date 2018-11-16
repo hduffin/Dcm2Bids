@@ -8,40 +8,43 @@ import csv
 from collections import OrderedDict
 import sys
 
+
 def load_json(filename):
-    with open(filename, 'r') as f:
+    with open(filename, "r") as f:
         data = json.load(f)
     return data
 
 
 def save_json(data, filename):
-    with open(filename, 'w') as f:
+    with open(filename, "w") as f:
         json.dump(data, f, indent=4)
 
 
-def write_txt(filename,lines=[]):
-    with open(filename, 'a') as f:
+def write_txt(filename, lines=[]):
+    with open(filename, "a") as f:
         for row in lines:
             f.write("%s\n" % row)
 
-def write_participants(filename,participants):
-    with open(filename, 'w') as f:
-        writer = csv.DictWriter(f, delimiter='\t',
-                                fieldnames=participants[0].keys())
+
+def write_participants(filename, participants):
+    with open(filename, "w") as f:
+        writer = csv.DictWriter(f, delimiter="\t", fieldnames=participants[0].keys())
         writer.writeheader()
         writer.writerows(participants)
+
 
 def read_participants(filename):
     if not os.path.exists(filename):
         return []
-    with open(filename, 'r') as f:
-        reader = csv.reader(f, delimiter='\t')
+    with open(filename, "r") as f:
+        reader = csv.reader(f, delimiter="\t")
         # Check for python version and use the right syntax.
         if sys.version_info[0] < 3:
             header = reader.next()
         else:
             header = next(reader)
-        return [OrderedDict(zip(header,row)) for row in reader]
+        return [OrderedDict(zip(header, row)) for row in reader]
+
 
 def make_directory_tree(directory):
     if not os.path.exists(directory):
@@ -58,8 +61,7 @@ def clean(directory):
 
 
 def splitext_(path):
-    for ext in ['.nii.gz']:
+    for ext in [".nii.gz"]:
         if path.endswith(ext):
-            return path[:-len(ext)], path[-len(ext):]
+            return path[: -len(ext)], path[-len(ext) :]
     return os.path.splitext(path)
-
