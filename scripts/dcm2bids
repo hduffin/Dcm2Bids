@@ -80,7 +80,7 @@ def get_arguments():
         required=False,
         default=None,
         help="Anonymize each anat image by passing it to this shell command \
-        (e.g., pydeface.py - the call syntax must be anonymizer inputfile \
+        (e.g., pydeface.py - the call syntax must be anonymizer inputfile --outfile \
         outputfile)")
 
     args = parser.parse_args()

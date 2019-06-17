@@ -57,7 +57,7 @@ usage: dcm2bids [-h] -d DICOM_DIR [DICOM_DIR ...] -p PARTICIPANT -c CONFIG
                 [-o OUTPUTDIR] [-l {DEBUG,INFO,WARNING,ERROR,CRITICAL}]
                 [-a ANONYMIZER]
 
-            dicom to BIDS conversion, version 0.4.0b. Fork of the original Dcm2Bids
+            dicom to BIDS conversion, version 0.4.0.1. Fork of the original Dcm2Bids
             project (v0.4.0, commit f63b22901408a7e848b6dbf2af542118729cb8b1 from
             https://github.com/cbedetti/Dcm2Bids).
 
