@@ -16,7 +16,7 @@ from setuptools import setup
 
 DISTNAME = "dcm2bids"
 DESCRIPTION = description
-VERSION = "0.4.0b"
+VERSION = "0.4.0.1"
 AUTHOR = "Johan Carlin"
 AUTHOR_EMAIL = ""
 URL = "https://github.com/jooh/Dcm2Bids"
