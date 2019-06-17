@@ -124,7 +124,7 @@ class Dcm2bids(object):
             _, ext = splitext_(f)
             if self.anonymizer and acquisition.dataType == "anat" and ".nii" in ext:
                 # it's an anat scan - try the anonymizer
-                command = " ".join([self.anonymizer, f, targetBase + ext])
+                command = " ".join([self.anonymizer, f, "--outfile", targetBase + ext])
                 self.logger.info(
                     "anonymizing anatomical with %s: %s",
                     self.anonymizer,

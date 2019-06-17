@@ -84,7 +84,7 @@ optional arguments:
   -a ANONYMIZER, --anonymizer ANONYMIZER
                         Anonymize each anat image by passing it to this shell
                         command (e.g., pydeface.py - the call syntax must be
-                        anonymizer inputfile outputfile)
+                        anonymizer inputfile  --outfile outputfile)
 
             This fork is maintained by Johan Carlin.
             Documentation at https://github.com/jooh/Dcm2Bids
