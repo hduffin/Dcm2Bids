@@ -47,7 +47,8 @@ class Dcm2bids(object):
         self.dicomdir = os.path.join(outputdir, "tmp_dcm2bids")
         self.anonymizer = anonymizer
         if not os.path.exists(self.outputdir):
-            os.makedirs(self.outputdir)
+            # need exist_ok to prevent race conditions in parallel execution
+            os.makedirs(self.outputdir, exist_ok=True)
         self.derivdir = os.path.join(outputdir, "derivatives")
         logging.basicConfig(
             format="%(asctime)s %(message)s",
