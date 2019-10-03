@@ -1,0 +1,64 @@
+{
+  "descriptions": [
+    {
+      "dataType": "func",
+      "customLabels": "task-5000scenes",
+      "modalityLabel": "bold",
+      "criteria": {
+        "SeriesDescription": "*BOLD*"
+      }
+    },
+    {
+      "dataType": "func",
+      "customLabels": "task-rest",
+      "customLabels": "acq-PA",
+      "modalityLabel": "bold",
+      "criteria": {
+        "SeriesDescription": "*OppPhase*"
+      }
+    },
+    {
+      "dataType": "fmap",
+      "customLabels": "dir-PA",
+      "customLabels": "acq-spinechopf68",
+      "modalityLabel": "epi",
+      "criteria": {
+        "SeriesDescription": "*SpinEchoFieldMap_pF68*PA*"
+      }
+    },
+    {
+      "dataType": "fmap",
+      "customLabels": "dir-AP",
+      "customLabels": "acq-spinechopf68",
+      "modalityLabel": "epi",
+      "criteria": {
+        "SeriesDescription": "*SpinEchoFieldMap_pF68*AP*"
+      }
+    },
+    {
+      "dataType": "fmap",
+      "customLabels": "dir-PA",
+      "customLabels": "acq-spinecho",
+      "modalityLabel": "epi",
+      "criteria": {
+        "SeriesDescription": "*SpinEchoFieldMap_PA*"
+      }
+    },
+    {
+      "dataType": "fmap",
+      "customLabels": "dir-AP",
+      "customLabels": "acq-spinecho",
+      "modalityLabel": "epi",
+      "criteria": {
+        "SeriesDescription": "*SpinEchoFieldMap_AP*"
+      }
+    },
+    {
+      "dataType": "fmap",
+      "modalityLabel": "fieldmap",
+      "criteria": {
+        "SeriesDescription": "*_FieldMap_*"
+      }
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+#!/bin/sh
+
+#$1 input directory
+#$2 output directory 
+#$3 sub id
+#$4 ses id 
+#$5 config file
+
+#Move to you output dir
+cd $2
+#Build scaffold
+dcm2bids_scaffold
+#Convert all relevant dcm data to bids formatting
+dcm2bids -d $1 -p $3 -s $4 -c $5
+
+#copy over additional events tsv and json files
+cp $1/Behavioral_Data/*.tsv $2/sub-$3/ses-$4/func/
+#echo "Copying tsv files from $1 to $2/sub-$3/ses-$4/func/"
+cp $1/Behavioral_Data/*.json $2/sub-$3/ses-$4/func/
+#echo "Copying json files from $1 to $2/sub-$3/ses-$4/func/"
+
+#Run through fmriprep and mriqc
+while true; do
+read -p "Do you want to run this through fmriprep?" yn
+    case $yn in
+        [Yy]* ) docker run -ti --rm -v $2:/data:ro -v $2/fmriprep_output:/out -v /usr/local/freesurfer/license.txt:/opt/freesurfer/license.txt poldracklab/fmriprep:latest /data /out/out participant --ignore fieldmaps; break;;
+        [Nn]* ) exit;;
+        * ) echo "Please answer yes or no.";;
+esac
+done
+while true; do
+    read -p "Do you want to run this through mriqc?" yn
+    case $yn in
+        [Yy]* ) docker run -it --rm -v $2:/data:ro -v $2/mriqc_output/:/out poldracklab/mriqc:latest /data /out participant; break;;
+        [Nn]* ) exit;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
+
+
