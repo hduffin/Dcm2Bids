@@ -100,11 +100,7 @@ or (recommended)
 `fmriprep-docker /home/toulmin/Documents/bid_conversion/5000scenes/ /home/toulmin/Documents/bid_conversion/fmri_prep_output\ -w /home/toulmin/Documents/bid_conversion/scratch --fs-license-file /usr/local/freesurfer/license.txt  `
 
 
-If you are running fieldmaps will need an "IntendedFor" section within json file in fmap dir.
-
-
-
-
+If you are running fieldmaps will need an "IntendedFor" section within json file in fmap dir. This can be added to the config file. If you run a subjects entire session of scans it will retroactively add the intended for directory so long as the config file specified the correct index placement of the functional scan. 
 
 
 
