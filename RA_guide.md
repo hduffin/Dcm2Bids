@@ -7,7 +7,7 @@
 
 | Variable   | Definition     |  Example  |
 |----|:-----:|-------------:|
-| ${sub} | This is the subject ID. This will change depending on what subject you're working on, this will always be in the form INET###. Please note that sometimes you'll have to put quotation marks around the session. | INET001| INET001|
+| ${sub} | This is the subject ID. This will change depending on what subject you're working on, this will always be in the form INET###. Please note that sometimes you'll have to put quotation marks around the subject. | INET001| INET001|
 | ${ses} | This is the session. This will change depending on what session you're working with, this will always be in the form of a number 1, 2, 3. Please note that sometimes you'll have to put quotation marks around the session. | 1 |
 |${dcm_dir} | This is the directory that has all the raw dicoms for that particular subject and session. If the files doesn't exist in the box directory you'll need to download it from Nunda and unzip the folder. The format of each folder provides the subject ID followed by the session. In the example provided we are working with INET001 session 1 | ~/Box/DATA/iNetworks/BIDS/DICOM/sub-INET001/INET001_1/SCANS |
 
