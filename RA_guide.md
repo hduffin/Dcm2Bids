@@ -17,7 +17,7 @@
   * ``` dcm2bids -d ${dcm_dir} -p ${sub} -s ${ses} -c ~/Box/DATA/iNetworks/BIDS/Nifti/.bidsignore/config.json --clobber ```
   * ex ``` dcm2bids -d ~/Box/DATA/iNetworks/BIDS/DICOM/sub-INET001/INET001_1/SCANS -p INET001 -s 1 -c ~/Box/DATA/iNetworks/BIDS/Nifti/.bidsignore/config.json --clobber ```
   * this will take awhile to process all your files and turn them into nifti's
- * Fix the fieldmaps, the current pipeline dcm2bids does not account for a fieldmap to apply to multiple runs therefore to account for this you'll need to run this script. You have to feed them as strings, you don't need to list the sub or ses parts the script takes care of that 
+ * Fix the fieldmaps, the current pipeline dcm2bids does not account for a fieldmap to apply to multiple runs therefore to account for this you'll need to run this script. **Be aware if a scan has multiple fieldmaps, look over the QC sheet to make sure the correct fieldmap is being used for analysis**
   * change directories to the folder with the python script
   * ``` cd ~/Box/DATA/iNetworks/BIDS/Nifti/.bidsignore ```
   *  ``` python -c "execfile('fix_jsons.py');fix_jsons('${sub}','${ses}')"```
