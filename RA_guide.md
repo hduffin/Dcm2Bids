@@ -1,6 +1,6 @@
 ## Step by step process to BIDs-ifying data and validating that it worked
  
-* Open the terminal and go to the directory iNetworks directory
+* Open the terminal and go to the iNetworks directory
   * ``` cd ~/Box/DATA/iNetworks/BIDS/Nifti ```
 * Check the QC sheet to see what subjects are not yet BIDs-ified, then run the following code to BIDs raw dcms to a bids nifti version, if the raw files are zipped you'll need to unzip 
   * ``` dcm2bids -d ${dcm_dir} -p ${sub} -s ${ses} -c config.json --clobber ```
@@ -16,8 +16,8 @@
   * If there are errors read over the bids documentation to see what exactly is problematic and open the files 
   * Make notes of this in the QC doc 
 * Now you'll need to deface anatomical images so everything can go onto Quest --only necessary for T1 images
-  * ``` cd ${bidsdir}/${sub}/${ses}/anat ```
-  * ``` pydeface ${sub}_${ses}_acq-RMS_T1w.nii.gz --outfile ${sub}/${ses}_acq-RMS_T1w.nii.gz --force ```
+  * ``` cd ~/Box/DATA/iNetworks/BIDS/Nifti/${sub}/${ses}/anat ```
+  * ``` pydeface ${sub}_${ses}_acq-RMS_T1w.nii.gz --outfile ${sub}_${ses}_acq-RMS_T1w.nii.gz --force ```
   * ex ``` pydeface sub-INET001_ses-3_acq-RMS_T1w.nii.gz --outfile sub-INET001_ses-3_acq-RMS_T1w.nii.gz --force ```
   * the name should be the exact same so it overwrite the current file to the defaced one
 * Once complete make sure the now defaced data passes the bids validator
