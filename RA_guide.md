@@ -1,13 +1,14 @@
 ## Step by step process to BIDs-ifying data and validating that it worked
-
-*Will need to figure out if we can keep the scripts outside of .bidsignore otherwise will need to write outputs 
+ 
 * Open the terminal and go to the directory iNetworks directory
   * ``` cd ~/Box/DATA/iNetworks/BIDS/Nifti ```
 * Check the QC sheet to see what subjects are not yet BIDs-ified, then run the following code to BIDs raw dcms to a bids nifti version, if the raw files are zipped you'll need to unzip 
   * ``` dcm2bids -d ${dcm_dir} -p ${sub} -s ${ses} -c config.json --clobber ```
-  * ex ``` dcm2bids -d ~/Box/DATA/iNetworks/BIDS/DICOM/sub-INET001/INET001_1/SCANS -p INET001 -s 1 -c ~/Box/DATA/iNetworks/BIDS/Nifit/.bidsignore/config.json --clobber ```
+  * ex ``` dcm2bids -d ~/Box/DATA/iNetworks/BIDS/DICOM/sub-INET001/INET001_1/SCANS -p INET001 -s 1 -c ~/Box/DATA/iNetworks/BIDS/Nifti/.bidsignore/config.json --clobber ```
   * this will take awhile to process all your files and turn them into nifti's
  * Fix the fieldmaps, the current pipeline dcm2bids does not account for a fieldmap to apply to multiple runs therefore to account for this you'll need to run this script. You have to feed them as strings, you don't need to list the sub or ses parts the script takes care of that 
+  * change directories to the folder with the python script
+  * ``` cd ~/Box/DATA/iNetworks/BIDS/Nifti/.bidsignore ```
   *  ``` python -c "execfile('fix_jsons.py');fix_jsons('SUBID','SES')"```
   * ex  ``` python -c "execfile('fix_jsons.py');fix_jsons('INET001','1')"```
 * Once complete you should see if the Nifti folder passes the bids validator 
