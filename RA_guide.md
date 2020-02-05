@@ -1,5 +1,6 @@
 ## Step by step process to BIDs-ifying data and validating that it worked
 
+*Will need to figure out if we can keep the scripts outside of .bidsignore otherwise will need to write outputs 
 * Open the terminal and go to the directory iNetworks directory
   * ``` cd ~/Box/DATA/iNetworks/BIDS/Nifti ```
 * Check the QC sheet to see what subjects are not yet BIDs-ified, then run the following code to BIDs raw dcms to a bids nifti version, if the raw files are zipped you'll need to unzip 
