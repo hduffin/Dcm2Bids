@@ -26,13 +26,13 @@
   * Run the following **change based on your subject and session**
   
   
-  ``` ./iNet2BIDS_all ${sub} ${ses} ````
+  ``` ./iNet2BIDS_all ${sub} ${ses} ```
   
   
   ex
   
   
-   ``` ./iNet2BIDS_all INET001 1 ````
+   ``` ./iNet2BIDS_all INET001 1 ```
    
    
  * Fill out the QC sheet with the number 1 to indicate the script is running
