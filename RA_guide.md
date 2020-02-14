@@ -9,31 +9,75 @@
 |----|:-----:|-------------:|
 | ${sub} | This is the subject ID. This will change depending on what subject you're working on, this will always be in the form INET###. Please note that sometimes you'll have to put quotation marks around the subject. | INET001| INET001|
 | ${ses} | This is the session. This will change depending on what session you're working with, this will always be in the form of a number 1, 2, 3. Please note that sometimes you'll have to put quotation marks around the session. | 1 |
-|${dcm_dir} | This is the directory that has all the raw dicoms for that particular subject and session. If the files doesn't exist in the box directory you'll need to download it from Nunda and unzip the folder. The format of each folder provides the subject ID followed by the session. In the example provided we are working with INET001 session 1 | ~/Box/DATA/iNetworks/BIDS/DICOM/sub-INET001/INET001_1/SCANS |
 
-* Open the terminal and go to the iNetworks directory
-  * ``` cd ~/Box/DATA/iNetworks/BIDS/Nifti ```
-* Check the QC sheet to see what subjects are not yet BIDs-ified, determine if any new folders need to be downloaded and unzipped from Nunda then run the following code to BIDs raw dcms to a bids nifti version. 
-  * ``` dcm2bids -d ${dcm_dir} -p ${sub} -s ${ses} -c ~/Box/DATA/iNetworks/BIDS/Nifti/.bidsignore/config.json --clobber ```
-  * ex ``` dcm2bids -d ~/Box/DATA/iNetworks/BIDS/DICOM/sub-INET001/INET001_1/SCANS -p INET001 -s 1 -c ~/Box/DATA/iNetworks/BIDS/Nifti/.bidsignore/config.json --clobber ```
-  * this will take awhile to process all your files and turn them into nifti's
- * Fix the fieldmaps, the current pipeline dcm2bids does not account for a fieldmap to apply to multiple runs therefore to account for this you'll need to run this script. **Be aware if a scan has multiple fieldmaps, look over the QC sheet to make sure the correct fieldmap is being used for analysis**
-  * change directories to the folder with the python script
-  * ``` cd ~/Box/DATA/iNetworks/BIDS/Nifti/.bidsignore ```
-  *  ``` python -c "execfile('fix_jsons.py');fix_jsons('${sub}','${ses}')"```
-  **Please note here that the ${sub} and ${ses} need to be in 'quotes'**
-  * ex  ``` python -c "execfile('fix_jsons.py');fix_jsons('INET001','1')"```
-* Once complete you should see if the Nifti folder passes the bids validator 
-  * http://bids-standard.github.io/bids-validator/
-  * If there are errors read over the bids documentation to see what exactly is problematic and open the files 
-  * Make notes of this in the QC doc 
-* Now you'll need to deface anatomical images so everything can go onto Quest --only necessary for T1 images which are only taken during **session 3**
-  * ``` cd ~/Box/DATA/iNetworks/BIDS/Nifti/${sub}/ses-3/anat ```
-  * ``` pydeface ${sub}_ses-3_acq-RMS_T1w.nii.gz --outfile ${sub}_ses-3_acq-RMS_T1w.nii.gz --force ```
-  * ex ``` pydeface sub-INET001_ses-3_acq-RMS_T1w.nii.gz --outfile sub-INET001_ses-3_acq-RMS_T1w.nii.gz --force ```
-  * the name should be the exact same so it overwrites the current file to the defaced one
-* Once complete make sure the now defaced data passes the bids validator
-  * http://bids-standard.github.io/bids-validator/
-* Open the file using afni to see if the anatomical is truly defaced 
-  * ``` afni ```
-  * if everything worked you should see a brain image without a face on it 
+
+  **Follow along using the QC sheet**
+  
+  ### Downloaded
+  * Download the files off of Nunda, DO NOT UNZIP
+  
+  ### iNet2BIDS_all
+  * Open the terminal type in the following
+  
+  
+   ``` cd ~/Box/DATA/iNetworks/BIDS/Nifti/.bidsignore ```
+   
+   
+  * Run the following **change based on your subject and session**
+  
+  
+  ``` ./iNet2BIDS_all ${sub} ${ses} ````
+  
+  
+  ex
+  
+  
+   ``` ./iNet2BIDS_all INET001 1 ````
+   
+   
+ * Fill out the QC sheet with the number 1 to indicate the script is running
+ ## After the script is complete go through this verification process 
+ ### fix_jsons
+* Verify the script worked, go to the json website and select the phase diff json file in the fmap folder, look for the section IntendedFor. This should have a list of paths of all the functional scans 
+* https://jsoneditoronline.org/
+* ex "IntendedFor": [
+        "ses-3/func/sub-INET001_ses-3_task-rest_run-05_bold.nii.gz", 
+        "ses-3/func/sub-INET001_ses-3_task-mixed_run-02_bold.nii.gz", 
+        "ses-3/func/sub-INET001_ses-3_task-ambiguity_run-02_bold.nii.gz", 
+        "ses-3/func/sub-INET001_ses-3_task-mixed_run-01_bold.nii.gz", 
+        "ses-3/func/sub-INET001_ses-3_task-ambiguity_run-01_bold.nii.gz", 
+        "ses-3/func/sub-INET001_ses-3_task-rest_run-03_bold.nii.gz", 
+        "ses-3/func/sub-INET001_ses-3_task-rest_run-06_bold.nii.gz", 
+        "ses-3/func/sub-INET001_ses-3_task-rest_run-08_bold.nii.gz", 
+        "ses-3/func/sub-INET001_ses-3_task-rest_run-01_bold.nii.gz", 
+        "ses-3/func/sub-INET001_ses-3_task-slowreveal_run-02_bold.nii.gz", 
+        "ses-3/func/sub-INET001_ses-3_task-rest_run-04_bold.nii.gz", 
+        "ses-3/func/sub-INET001_ses-3_task-slowreveal_run-01_bold.nii.gz", 
+        "ses-3/func/sub-INET001_ses-3_task-rest_run-07_bold.nii.gz", 
+        "ses-3/func/sub-INET001_ses-3_task-rest_run-02_bold.nii.gz"
+    ]
+### pydeface
+* Verify the anatomicals were defaced
+* Open the terminal and go to the anat folder
+
+
+``` cd ~/Box/DATA/iNetworks/BIDS/Nifti/sub-${sub}/${ses}/anat ```
+
+
+ex
+
+
+  ``` cd ~/Box/DATA/iNetworks/BIDS/Nifti/sub-INET001/ses-3/anat ```
+  
+  
+  ``` afni ```
+  
+  
+* This will open the afni program and show you the anatomical scan if one exists. The image should NOT have a face on it. 
+  
+### bids_valid
+* Verify the script worked, open the subjects session in the Nifti folder it should look bids appropriate 
+* Then go to this website and select the entire Nifit folder 
+* http://bids-standard.github.io/bids-validator/
+  
+  
