@@ -77,7 +77,7 @@ ex
   
 ### bids_valid
 * Verify the script worked, open the subjects session in the Nifti folder it should look bids appropriate 
-* Then go to this website and select the entire Nifit folder 
+* Then go to this website and select the entire Nifti folder 
 * http://bids-standard.github.io/bids-validator/
   
   
