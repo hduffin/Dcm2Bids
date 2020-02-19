@@ -72,6 +72,7 @@ ex
   
   ``` afni ```
   
+  Click overlay and then click T1
   
 * This will open the afni program and show you the anatomical scan if one exists. The image should NOT have a face on it. 
   
